@@ -40,7 +40,7 @@ public class Eve {
 
 //        new ServiceMaterial().addAllMaterialFromFile(stra);
 //        System.out.println(new ServiceSystem().get(30000007).toString());
-        StatusMaterial statusMaterial = new ServiceStatusMaterial()
-                .getServiceStatusMaterialFromEve(30000142,944);
+//        StatusMaterial statusMaterial = new ServiceStatusMaterial()
+//                .getServiceStatusMaterialFromEve(30000142,944);
     }
 }
