@@ -16,12 +16,12 @@ public class DbConstants {
 //----------------------------------------------------------------------------------------------------------------
 // ------------------------------------- EVE MATERIAL TABLE ----------------------------------------------------------
     public static final String MYSQL_ADD_MATERIAL = "INSERT INTO " + TABLE_NAME_MATERIALS +
-        " (`id`,`name`,`image`) VALUE (?,?,?)";
+        " (`id`,`name`,`image`,`parent_id`) VALUE (?,?,?,?)";
     public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
     public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
     //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";
     public static final String MYSQL_EDIT_MATERIAL_BY_ID = "UPDATE " + TABLE_NAME_MATERIALS +
-            " SET name=?, image=? WHERE id=?;";
+            " SET name=?, image=?, parent_id=?, WHERE id=?;";
 
 //----------------------------------------------------------------------------------------------------------------
 // ------------------------------------- EVE STATUS MATERIAL TABLE ----------------------------------------------------------
@@ -39,6 +39,28 @@ public class DbConstants {
 // ------------------------------------- EVE MATERIAL GROUP TABLE ----------------------------------------------------------
 public static final String MYSQL_ADD_MATERIAL_GROUP = "INSERT INTO " + TABLE_NAME_MATERIALS_GROUP +
         " (`id`,`name`,`description`,`parent_group_id`) VALUE (?,?,?,?)";
+//    public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
+//    public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
+//    //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";
+//    public static final String MYSQL_EDIT_MATERIAL_BY_ID = "UPDATE " + TABLE_NAME_MATERIALS +
+//            " SET name=?, image=? WHERE id=?;";
+
+//----------------------------------------------------------------------------------------------------------------
+
+    // ------------------------------------- EVE BLUE PRINT TABLE ----------------------------------------------------------
+    public static final String MYSQL_ADD_BLUE_PRINT = "INSERT INTO " + TABLE_NAME_BLUE_PRINTS +
+            " (`material_id`,`economy_materials`,`economy_time`,`max_runs`,`quantity_res`) VALUE (?,?,?,?,?)";
+//    public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
+//    public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
+//    //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";
+//    public static final String MYSQL_EDIT_MATERIAL_BY_ID = "UPDATE " + TABLE_NAME_MATERIALS +
+//            " SET name=?, image=? WHERE id=?;";
+
+//----------------------------------------------------------------------------------------------------------------
+
+    // ------------------------------------- EVE BLUE PRINT TABLE TABLE ----------------------------------------------------------
+    public static final String MYSQL_ADD_BLUE_PRINT_MATERIAL = "INSERT INTO " + TABLE_NAME_BLUE_PRINT_MATERIAL +
+            " (`material_id`,`quantity`,`blue_print_id`) VALUE (?,?,?)";
 //    public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
 //    public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
 //    //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";

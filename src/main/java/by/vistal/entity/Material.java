@@ -4,6 +4,7 @@ public class Material {
     private Integer id;
     private String name;
     private String image;
+    private Integer parent_id;
 
     public Integer getId() {
         return id;
@@ -27,5 +28,13 @@ public class Material {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Integer getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(Integer parent_id) {
+        this.parent_id = parent_id;
     }
 }

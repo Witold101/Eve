@@ -31,6 +31,10 @@ public class DbInit {
             pst.execute();
             pst = connection.prepareStatement(MYSQL_INIT_STATUS_MATERIAL_TABLE);
             pst.execute();
+            pst = connection.prepareStatement(MYSQL_INIT_BLUE_PRINT_TABLE);
+            pst.execute();
+            pst = connection.prepareStatement(MYSQL_INIT_BLUE_PRINT_MATERIAL_TABLE);
+            pst.execute();
             pst.close();
             connection.close();
         } catch (SQLException e) {

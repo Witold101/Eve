@@ -67,6 +67,7 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
             material.setId(rs.getInt("id"));
             material.setName(rs.getString("name"));
             material.setImage(rs.getString("image"));
+            material.setParent_id(rs.getInt("parent_id"));
         }
         return material;
     }
@@ -81,6 +82,7 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
             String st;
             material.setId(rs.getInt("id"));
             material.setName(rs.getString("name"));
+            material.setParent_id(rs.getInt("parent_id"));
             if (rs.getObject("image") != null) {
                 material.setImage(rs.getString("image"));
             }else{
@@ -112,6 +114,7 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
         pst.setInt(1, date.getId());
         pst.setString(2, date.getName());
         pst.setString(3, date.getImage());
+        pst.setInt(4,date.getParent_id());
         if (pst.executeUpdate() != 0) {
             flag = true;
         }
@@ -124,6 +127,7 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
         pst.setString(1, date.getName());
         pst.setString(2, date.getImage());
         pst.setInt(3, date.getId());
+        pst.setInt(4,date.getParent_id());
         if (pst.executeUpdate() > 0) {
             return true;
         } else {
