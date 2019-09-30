@@ -48,6 +48,6 @@ public class DbInitTable {
             TABLE_NAME_BLUE_PRINT_MATERIAL+ "` (`id` INT NOT NULL AUTO_INCREMENT, `material_id` INT NOT NULL,"+
             "`quantity` INT NOT NULL DEFAULT 0,`blue_print_id` INT NOT NULL, PRIMARY KEY (`id`), CONSTRAINT `bp_material`"+
             " FOREIGN KEY (`material_id`) REFERENCES `"+TABLE_NAME_MATERIALS+"` (`id`) ON DELETE NO ACTION"+
-            " ON UPDATE NO ACTION, CONSTRAINT `bp_bp` FOREIGN KEY (`blue_print_id`) REFERENCES `"+
-            TABLE_NAME_BLUE_PRINTS+ "` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION);";
+            " ON UPDATE NO ACTION);";//, CONSTRAINT `bp_bp` FOREIGN KEY (`blue_print_id`) REFERENCES `"+
+            //TABLE_NAME_BLUE_PRINTS+ "` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION);";
 }

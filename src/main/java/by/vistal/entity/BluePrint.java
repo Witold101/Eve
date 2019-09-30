@@ -1,5 +1,6 @@
 package by.vistal.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,10 @@ public class BluePrint {
     private Integer maxRuns;
     private Integer quantityResult;
     private List<BluePrintMaterials> bluePrintMaterials;
+
+    public BluePrint() {
+        bluePrintMaterials = new ArrayList<>();
+    }
 
     public Integer getId() {
         return id;
@@ -77,5 +82,9 @@ public class BluePrint {
 
     public void setBluePrintMaterials(List<BluePrintMaterials> bluePrintMaterials) {
         this.bluePrintMaterials = bluePrintMaterials;
+    }
+
+    public void addBluePrintMaterials(BluePrintMaterials materials){
+        this.bluePrintMaterials.add(materials);
     }
 }

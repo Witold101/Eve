@@ -3,10 +3,7 @@ package by.vistal;
 
 import by.vistal.dao.*;
 import by.vistal.db.DbInit;
-import by.vistal.entity.BluePrint;
-import by.vistal.entity.ItemGroup;
-import by.vistal.entity.Material;
-import by.vistal.entity.StatusMaterial;
+import by.vistal.entity.*;
 import by.vistal.services.entity.*;
 import org.xml.sax.SAXException;
 
@@ -15,6 +12,7 @@ import java.io.*;
 import java.net.*;
 //import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Eve {
@@ -31,25 +29,40 @@ public class Eve {
             DbInit.initTables();
         }
 
- //          ItemGroup itemGroup = DaoItemsGroup.getInstance().getItemGroupEve(88);
- //       DaoItemsGroup.getInstance().getItemsGroupFromEve();
- //       DaoMaterial.getInstance().upDateFileMaterial();
-//      List<Material> stra = DaoMaterial.getInstance().getMaterialsEveDb(new File("typeids.csv"));
-
-//        new ServiceMaterial().addAllMaterialFromFile(stra);
-//        System.out.println(new ServiceSystem().get(30000007).toString());
-//        StatusMaterial statusMaterial = new ServiceStatusMaterial()
-//                .getServiceStatusMaterialFromEve(30000142,944);
-        Material material = new Material();
-        material.setId(10);
         BluePrint bluePrint = new BluePrint();
-        bluePrint.setId(11);
-        bluePrint.setMaterial(material);
-        bluePrint.setEconomyMaterialPrc(90);
-        bluePrint.setEconomyTimePrc(15);
-        bluePrint.setMaxRuns(55);
+        bluePrint.setMaterial(new ServiceMaterial().get(10));
+        bluePrint.setEconomyMaterialPrc(20);
+        bluePrint.setEconomyTimePrc(10);
+        bluePrint.setMaxRuns(300);
         bluePrint.setNumberRuns(2);
         bluePrint.setQuantityResult(1);
-        new ServiceBluePrint().add(bluePrint);
+        //bluePrint.setId();
+
+
+        List<BluePrintMaterials> list = new ArrayList<>();
+
+        BluePrintMaterials bpMaterials = new BluePrintMaterials();
+        bpMaterials.setMaterial(new ServiceMaterial().get(14));
+        bpMaterials.setQuantity(300);
+
+        //bpMaterials.setBluPrintId(bluePrint.getId());
+        //bpMaterials.setId();
+
+       list.add(bpMaterials);
+
+        BluePrintMaterials bpMaterials2 = new BluePrintMaterials();
+        bpMaterials2.setMaterial(new ServiceMaterial().get(44));
+        bpMaterials2.setQuantity(300);
+        //bpMaterials2.setBluPrintId(bluePrint.getId());
+        //bpMaterials2.setId();
+
+        list.add(bpMaterials2);
+
+        bluePrint.setBluePrintMaterials(list);
+
+
+        new ServiceBluePrint().addWithMaterials(bluePrint,list);
+
+
     }
 }

@@ -3,9 +3,7 @@ package by.vistal.dao;
 import by.vistal.dao.interfaces.InterfaceDao;
 import by.vistal.entity.BluePrint;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +39,8 @@ public class DaoBluePrint extends ConfigReadServer implements InterfaceDao<BlueP
     private void initPrepareStatement(Connection connection) throws SQLException {
         if (mysqlPrepareStatement == null) {
             mysqlPrepareStatement = new HashMap<>();
-            mysqlPrepareStatement.put(ADD, connection.prepareStatement(MYSQL_ADD_BLUE_PRINT));
+            mysqlPrepareStatement.put(ADD, connection.prepareStatement(MYSQL_ADD_BLUE_PRINT
+                    , Statement.RETURN_GENERATED_KEYS));
         }
     }
 
@@ -88,6 +87,21 @@ public class DaoBluePrint extends ConfigReadServer implements InterfaceDao<BlueP
             flag = true;
         }
         return flag;
+    }
+
+    public BluePrint addGet(BluePrint date) throws SQLException {
+        PreparedStatement pst = mysqlPrepareStatement.get(ADD);
+        pst.setInt(1, date.getMaterial().getId());
+        pst.setInt(2, date.getEconomyMaterialPrc());
+        pst.setInt(3, date.getEconomyTimePrc());
+        pst.setInt(4,date.getMaxRuns());
+        pst.setInt(5,date.getQuantityResult());
+        pst.executeUpdate();
+        ResultSet rs = pst.getGeneratedKeys();
+        if (rs.next()){
+            date.setId(rs.getInt(1));
+        }
+        return date;
     }
 
     @Override

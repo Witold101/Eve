@@ -3,9 +3,7 @@ package by.vistal.dao;
 import by.vistal.dao.interfaces.InterfaceDao;
 import by.vistal.entity.BluePrintMaterials;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +13,7 @@ import static by.vistal.db.DbConstants.MYSQL_ADD_BLUE_PRINT_MATERIAL;
 public class DaoBluePrintMaterials extends ConfigReadServer implements InterfaceDao<BluePrintMaterials> {
 
     private Map<String, PreparedStatement> mysqlPrepareStatement;
-    private final String ADD = "addBluePrintMaterial";
+    private final String ADD_BP_MATERIAL = "addBluePrintMaterial";
 //    private final String ADD_ITEMS_GROUP = "addItemsGroup";
 
     private static volatile DaoBluePrintMaterials INSTANCE = null;
@@ -41,7 +39,8 @@ public class DaoBluePrintMaterials extends ConfigReadServer implements Interface
     private void initPrepareStatement(Connection connection) throws SQLException {
         if (mysqlPrepareStatement == null) {
             mysqlPrepareStatement = new HashMap<>();
-            mysqlPrepareStatement.put(ADD, connection.prepareStatement(MYSQL_ADD_BLUE_PRINT_MATERIAL));
+            mysqlPrepareStatement.put(ADD_BP_MATERIAL, connection.prepareStatement(MYSQL_ADD_BLUE_PRINT_MATERIAL
+                    , Statement.RETURN_GENERATED_KEYS));
         }
     }
     @Override
@@ -77,7 +76,7 @@ public class DaoBluePrintMaterials extends ConfigReadServer implements Interface
     @Override
     public Boolean add(BluePrintMaterials date) throws SQLException {
         Boolean flag = false;
-        PreparedStatement pst = mysqlPrepareStatement.get(ADD);
+        PreparedStatement pst = mysqlPrepareStatement.get(ADD_BP_MATERIAL);
         pst.setInt(1, date.getMaterial().getId());
         pst.setInt(2, date.getQuantity());
         pst.setInt(3, date.getBluPrintId());
@@ -85,6 +84,19 @@ public class DaoBluePrintMaterials extends ConfigReadServer implements Interface
             flag = true;
         }
         return flag;
+    }
+
+    public BluePrintMaterials addGet(BluePrintMaterials date) throws SQLException {
+        PreparedStatement pst = mysqlPrepareStatement.get(ADD_BP_MATERIAL);
+        pst.setInt(1, date.getMaterial().getId());
+        pst.setInt(2, date.getQuantity());
+        pst.setInt(3, date.getBluPrintId());
+        pst.executeUpdate();
+        ResultSet rs = pst.getGeneratedKeys();
+        if (rs.next()){
+            date.setId(rs.getInt(1));
+        }
+        return date;
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -55,7 +56,18 @@ public class ServiceMaterial extends ServiceSetup implements DaoServiceImpl<Inte
 
     @Override
     public Material get(Integer id) {
-        return null;
+        Material material = null;
+        if (id != null) {
+            startTransaction();
+            try {
+                material = daoMaterial.getById(id);
+            } catch (SQLException e) {
+                System.out.println("Error get MATERIAL in DB.");
+                e.printStackTrace();
+            }
+            commit();
+        }
+        return material;
     }
 
     public Boolean addAllMaterialFromFile(List<Material> materials) {
