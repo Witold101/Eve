@@ -37,4 +37,11 @@ public class Material {
     public void setParent_id(Integer parent_id) {
         this.parent_id = parent_id;
     }
+
+    public void initImage32(){
+        this.image =String.format(EntityConstants.IMAGE_SERVER_32,this.id);
+    }
+    public void initImage64(){
+        this.image =String.format(EntityConstants.IMAGE_SERVER_64,this.id);
+    }
 }

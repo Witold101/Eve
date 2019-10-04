@@ -21,6 +21,8 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
     private final String GET_MATERIAL_BY_NAME = "getMaterialByName";
     private final String EDIT_MATERIAL_BY_ID = "editMaterial";
     private final String ADD_MATERIAL = "add";
+    private final String GET_MATERIAL_BY_PARENT_ID = "getMaterialByParentId";
+
 
     private static volatile DaoMaterial INSTANCE = null;
 
@@ -49,6 +51,7 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
             mysqlPrepareStatement.put(GET_MATERIAL_BY_NAME, connection.prepareStatement(MYSQL_GET_MATERIAL_BY_NAME));
             mysqlPrepareStatement.put(EDIT_MATERIAL_BY_ID, connection.prepareStatement(MYSQL_EDIT_MATERIAL_BY_ID));
             mysqlPrepareStatement.put(ADD_MATERIAL, connection.prepareStatement(MYSQL_ADD_MATERIAL));
+            mysqlPrepareStatement.put(GET_MATERIAL_BY_PARENT_ID, connection.prepareStatement(MYSQL_GET_MATERIAL_BY_PARENT_ID));
         }
     }
 
@@ -135,6 +138,26 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
         }
     }
 
+    public List<Material> getByParentId(Integer parentId) throws SQLException{
+        List<Material> materials = new ArrayList<>();
+        PreparedStatement pst = mysqlPrepareStatement.get(GET_MATERIAL_BY_PARENT_ID);
+        pst.setInt(1, parentId);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            Material material = new Material();
+            material.setId(rs.getInt("id"));
+            material.setName(rs.getString("name"));
+            material.setParent_id(rs.getInt("parent_id"));
+            if (rs.getObject("image") != null) {
+                material.setImage(rs.getString("image"));
+            }else{
+                material.setImage("");
+            }
+            materials.add(material);
+        }
+        return materials;
+    }
+
     private Material parsLine(String parse) {
         Material material = new Material();
         byte i = 0;
@@ -147,6 +170,7 @@ public class DaoMaterial extends ConfigReadServer implements InterfaceDao<Materi
                     case (1):
                         material.setName(str);
                 }
+                material.initImage32();
                 i++;
             }
         }

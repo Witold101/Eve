@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceMaterial extends ServiceSetup implements DaoServiceImpl<Integer, Material> {
@@ -76,4 +77,20 @@ public class ServiceMaterial extends ServiceSetup implements DaoServiceImpl<Inte
         }
         return true;
     }
+
+    public List<Material> getByParentId(Integer parentId) {
+        List<Material> materials = null;
+        if (parentId != null) {
+            startTransaction();
+            try {
+                materials = daoMaterial.getByParentId(parentId);
+            } catch (SQLException e) {
+                System.out.println("Error get MATERIAL BY PARENT ID in DB.");
+                e.printStackTrace();
+            }
+            commit();
+        }
+        return materials;
+    }
+
 }

@@ -18,6 +18,7 @@ public class DbConstants {
     public static final String MYSQL_ADD_MATERIAL = "INSERT INTO " + TABLE_NAME_MATERIALS +
         " (`id`,`name`,`image`,`parent_id`) VALUE (?,?,?,?)";
     public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
+    public static final String MYSQL_GET_MATERIAL_BY_PARENT_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE parent_id=?;";
     public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
     //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";
     public static final String MYSQL_EDIT_MATERIAL_BY_ID = "UPDATE " + TABLE_NAME_MATERIALS +

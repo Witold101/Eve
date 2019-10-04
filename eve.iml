@@ -28,14 +28,7 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="Maven: javax.ws.rs:jsr311-api:1.1.1" level="project" />
-    <orderEntry type="library" exported="" name="Maven: com.sun.jersey:jersey-client:1.19.4" level="project" />
-    <orderEntry type="library" exported="" name="Maven: com.sun.jersey:jersey-core:1.19.4" level="project" />
-    <orderEntry type="library" exported="" name="Maven: mysql:mysql-connector-java:5.1.47" level="project" />
-    <orderEntry type="library" exported="" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
-    <orderEntry type="library" exported="" name="Maven: junit:junit:4.10" level="project" />
-    <orderEntry type="library" exported="" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.5/lib/jsp-api.jar!/" />
@@ -44,7 +37,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://C:/Program Files (x86)/Apache Software Foundation/Tomcat 8.5/lib/servlet-api.jar!/" />
@@ -53,7 +46,20 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="Maven: javax.ws.rs:jsr311-api:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-client:1.19.4" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-core:1.19.4" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-servlet:1.19.4" level="project" />
+    <orderEntry type="library" name="Maven: com.sun.jersey:jersey-server:1.19.4" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:5.1.47" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
+    <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
+    <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-core:8.5.35" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-annotations-api:8.5.35" level="project" />
+    <orderEntry type="library" name="Maven: javax.servlet:javax.servlet-api:4.0.1" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="jersey-bundle-1.19.1" level="project" />
   </component>
 </module>
