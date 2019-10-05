@@ -1,20 +1,25 @@
 package by.vistal.dao;
 
 import by.vistal.dao.interfaces.InterfaceDao;
+import by.vistal.entity.BluePrint;
 import by.vistal.entity.BluePrintMaterials;
+import by.vistal.entity.Material;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static by.vistal.db.DbConstants.MYSQL_ADD_BLUE_PRINT_MATERIAL;
+import static by.vistal.db.DbConstants.MYSQL_GET_MATERIALS_BY_ID_MATERIAL;
 
 public class DaoBluePrintMaterials extends ConfigReadServer implements InterfaceDao<BluePrintMaterials> {
 
     private Map<String, PreparedStatement> mysqlPrepareStatement;
     private final String ADD_BP_MATERIAL = "addBluePrintMaterial";
-//    private final String ADD_ITEMS_GROUP = "addItemsGroup";
+    private final String GET_BLUE_PRINT_MATERIALS_BY_ID_MATERIALS = "getByIdMaterials";
 
     private static volatile DaoBluePrintMaterials INSTANCE = null;
 
@@ -41,6 +46,9 @@ public class DaoBluePrintMaterials extends ConfigReadServer implements Interface
             mysqlPrepareStatement = new HashMap<>();
             mysqlPrepareStatement.put(ADD_BP_MATERIAL, connection.prepareStatement(MYSQL_ADD_BLUE_PRINT_MATERIAL
                     , Statement.RETURN_GENERATED_KEYS));
+            mysqlPrepareStatement.put(GET_BLUE_PRINT_MATERIALS_BY_ID_MATERIALS
+                    , connection.prepareStatement(MYSQL_GET_MATERIALS_BY_ID_MATERIAL));
+
         }
     }
     @Override
@@ -102,5 +110,23 @@ public class DaoBluePrintMaterials extends ConfigReadServer implements Interface
     @Override
     public Boolean edit(BluePrintMaterials date) throws SQLException {
         return null;
+    }
+
+    public List<BluePrintMaterials> getByBluePrintId(Integer bluePrintId) throws SQLException{
+        List<BluePrintMaterials> list = new ArrayList<>();
+        PreparedStatement pst = mysqlPrepareStatement.get(GET_BLUE_PRINT_MATERIALS_BY_ID_MATERIALS);
+        pst.setInt(1, bluePrintId);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            BluePrintMaterials bluePrintMaterials = new BluePrintMaterials();
+            bluePrintMaterials.setId(rs.getInt("id"));
+            Material material = new Material();
+            material.setId(rs.getInt("material_id"));
+            bluePrintMaterials.setMaterial(material);
+            bluePrintMaterials.setQuantity(rs.getInt("quantity"));
+            bluePrintMaterials.setBluPrintId(bluePrintId);
+            list.add(bluePrintMaterials);
+        }
+        return list;
     }
 }

@@ -64,5 +64,6 @@ public class Eve {
 //        new ServiceBluePrint().addWithMaterials(bluePrint,list);
 
 //        List<Material> materials = new ServiceMaterial().getByParentId(EntityConstants.REFINED_PLANET_MATERIAL);
+        BluePrint print = new ServiceBluePrint().getByIdMaterial(1);
     }
 }

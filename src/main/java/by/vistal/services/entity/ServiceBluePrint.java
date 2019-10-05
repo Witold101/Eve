@@ -2,6 +2,7 @@ package by.vistal.services.entity;
 
 import by.vistal.dao.DaoBluePrint;
 import by.vistal.dao.DaoBluePrintMaterials;
+import by.vistal.dao.DaoMaterial;
 import by.vistal.entity.BluePrint;
 import by.vistal.entity.BluePrintMaterials;
 import by.vistal.entity.Material;
@@ -14,12 +15,14 @@ public class ServiceBluePrint extends ServiceSetup implements DaoServiceImpl<Int
 
     private DaoBluePrint daoBluePrint;
     private DaoBluePrintMaterials daoBluePrintMaterials;
+    private DaoMaterial daoMaterial;
 
     public ServiceBluePrint() {
         super();
         try {
             daoBluePrint = DaoBluePrint.getInstance();
             daoBluePrintMaterials = DaoBluePrintMaterials.getInstance();
+            daoMaterial = DaoMaterial.getInstance();
         } catch (SQLException e) {
             java.lang.System.out.println("Error ServiceBluePrint");
             e.printStackTrace();
@@ -69,7 +72,7 @@ public class ServiceBluePrint extends ServiceSetup implements DaoServiceImpl<Int
                     material.setBluPrintId(bluePrint.getId());
                     daoBluePrintMaterials.add(material);
                 }
-            } catch ( SQLException e){
+            } catch (SQLException e) {
                 java.lang.System.out.println("Error add WITH MATERIALS BLUE PRINT in DB.");
                 e.printStackTrace();
             }
@@ -93,5 +96,45 @@ public class ServiceBluePrint extends ServiceSetup implements DaoServiceImpl<Int
     @Override
     public BluePrint get(Integer id) {
         return null;
+    }
+
+    public BluePrint getByIdMaterial(Integer idMaterial) {
+        BluePrint bluePrint = null;
+        List<BluePrintMaterials> list = null;
+        if (idMaterial != null) {
+            startTransaction();
+            try {
+                bluePrint = daoBluePrint.getByIdMaterial(idMaterial);
+                if (bluePrint != null) {
+                    list = daoBluePrintMaterials.getByBluePrintId(bluePrint.getId());
+                    if (list != null) {
+                        for (BluePrintMaterials bpm : list) {
+                            bpm.setMaterial(daoMaterial.getById(bpm.getMaterial().getId()));
+                        }
+                        bluePrint.setBluePrintMaterials(list);
+                        bluePrint.setMaterial(daoMaterial.getById(idMaterial));
+                    }
+                }
+
+            } catch (SQLException e) {
+                java.lang.System.out.println("Error GET BLUE PRINT BY MATERIAL ID from DB.");
+                e.printStackTrace();
+            }
+            commit();
+        }
+        return bluePrint;
+    }
+
+    public List<Integer> getIdMaterialBluePrints() {
+        List<Integer> list = null;
+        startTransaction();
+        try {
+            list = daoBluePrint.getIdMaterialBluePrints();
+        } catch (SQLException e) {
+            java.lang.System.out.println("Error Get ID MATERIALS FROM BLUE PRINT TABLE in DB.");
+            e.printStackTrace();
+        }
+        commit();
+        return list;
     }
 }

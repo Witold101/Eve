@@ -51,18 +51,21 @@ public static final String MYSQL_ADD_MATERIAL_GROUP = "INSERT INTO " + TABLE_NAM
     // ------------------------------------- EVE BLUE PRINT TABLE ----------------------------------------------------------
     public static final String MYSQL_ADD_BLUE_PRINT = "INSERT INTO " + TABLE_NAME_BLUE_PRINTS +
             " (`material_id`,`economy_materials`,`economy_time`,`max_runs`,`quantity_res`) VALUE (?,?,?,?,?)";
-//    public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
-//    public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
+    public static final String MYSQL_GET_BLUE_PRINT_BY_ID_MATERIAL = "SELECT * FROM " + TABLE_NAME_BLUE_PRINTS +
+            " WHERE material_id=?;";
+    public static final String MYSQL_GET_ID_MATERIAL_BLUE_PRINTS = "SELECT * FROM " + TABLE_NAME_BLUE_PRINTS +
+            " WHERE material_id > 0;";
 //    //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";
 //    public static final String MYSQL_EDIT_MATERIAL_BY_ID = "UPDATE " + TABLE_NAME_MATERIALS +
 //            " SET name=?, image=? WHERE id=?;";
 
 //----------------------------------------------------------------------------------------------------------------
 
-    // ------------------------------------- EVE BLUE PRINT TABLE TABLE ----------------------------------------------------------
+    // ------------------------------------- EVE BLUE PRINT MATERIAL TABLE ----------------------------------------------------------
     public static final String MYSQL_ADD_BLUE_PRINT_MATERIAL = "INSERT INTO " + TABLE_NAME_BLUE_PRINT_MATERIAL +
             " (`material_id`,`quantity`,`blue_print_id`) VALUE (?,?,?)";
-//    public static final String MYSQL_GET_MATERIAL_BY_ID = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE id=?;";
+    public static final String MYSQL_GET_MATERIALS_BY_ID_MATERIAL = "SELECT * FROM " + TABLE_NAME_BLUE_PRINT_MATERIAL +
+            " WHERE blue_print_id=?;";
 //    public static final String MYSQL_GET_MATERIAL_BY_NAME = "SELECT * FROM " + TABLE_NAME_MATERIALS + " WHERE name=?;";
 //    //public static final String MYSQL_DELL_USER = "DELETE FROM " + TABLE_NAME_USERS + " WHERE id=?;";
 //    public static final String MYSQL_EDIT_MATERIAL_BY_ID = "UPDATE " + TABLE_NAME_MATERIALS +

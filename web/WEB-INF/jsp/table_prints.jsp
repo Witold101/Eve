@@ -14,7 +14,10 @@
         <tbody>
         <c:forEach var="material" items="${materials}">
         <tr>
-            <td><img src="${material.image}" alt="..." class="img-thumbnail" style="background-color: #000000""></td>
+            <td><a href="./planet?item=${material.id}">
+                 <img src="${material.image}" alt="..." class="img-thumbnail" style="background-color: #000000">
+                </a>
+            </td>
             <td><c:out value="${material.name}" /></td>
         </tr>
         </c:forEach>

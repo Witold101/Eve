@@ -5,6 +5,7 @@ import by.vistal.entity.BluePrintMaterials;
 import by.vistal.services.intervaces.DaoServiceImpl;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class ServiceBluePrintMaterial extends ServiceSetup implements DaoServiceImpl<Integer, BluePrintMaterials> {
 
@@ -50,5 +51,20 @@ public class ServiceBluePrintMaterial extends ServiceSetup implements DaoService
     @Override
     public BluePrintMaterials get(Integer id) {
         return null;
+    }
+
+    public List<BluePrintMaterials> getByBluePrintId(Integer bluePrintId){
+        List<BluePrintMaterials> list = null;
+        if (bluePrintId!= null){
+            startTransaction();
+            try {
+                list = daoBluePrintMaterials.getByBluePrintId(bluePrintId);
+            }catch (SQLException e) {
+                java.lang.System.out.println("Error GET BLUE PRINT MATERIAL BY BLUE PRINT ID from DB.");
+                e.printStackTrace();
+            }
+            commit();
+        }
+        return list;
     }
 }
