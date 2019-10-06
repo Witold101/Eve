@@ -44,9 +44,6 @@
 <!--***************************************************************************-->
 <c:if test="${pageContext.findAttribute('namePage') == 10}">
 <jsp:include page="table_prints.jsp" />
-    ${pageContext.setAttribute('namePage',0)}
-    ${pageContext.setAttribute('namePage',0)}
-
 
 </c:if>
 

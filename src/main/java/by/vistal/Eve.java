@@ -2,8 +2,11 @@ package by.vistal;
 
 
 import by.vistal.dao.*;
+import by.vistal.dao.dto.CombinedQuery;
 import by.vistal.db.DbInit;
 import by.vistal.entity.*;
+import by.vistal.entity.dto.MaterialFlagBluePrint;
+import by.vistal.services.dto.DtoCombinedQuery;
 import by.vistal.services.entity.*;
 import org.xml.sax.SAXException;
 
@@ -64,6 +67,6 @@ public class Eve {
 //        new ServiceBluePrint().addWithMaterials(bluePrint,list);
 
 //        List<Material> materials = new ServiceMaterial().getByParentId(EntityConstants.REFINED_PLANET_MATERIAL);
-        BluePrint print = new ServiceBluePrint().getByIdMaterial(1);
+        List<MaterialFlagBluePrint> list = new DtoCombinedQuery().get(1335);
     }
 }

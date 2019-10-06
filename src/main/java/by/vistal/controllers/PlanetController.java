@@ -4,6 +4,8 @@ import by.vistal.controllers.servlets.WebConstants;
 import by.vistal.entity.BluePrint;
 import by.vistal.entity.EntityConstants;
 import by.vistal.entity.Material;
+import by.vistal.entity.dto.MaterialFlagBluePrint;
+import by.vistal.services.dto.DtoCombinedQuery;
 import by.vistal.services.entity.ServiceBluePrint;
 import by.vistal.services.entity.ServiceMaterial;
 
@@ -34,9 +36,9 @@ public class PlanetController implements Controller {
             }
         }
         if (parameterItem == null){
-            List<Material> materials = new ServiceMaterial().getByParentId(EntityConstants.REFINED_PLANET_MATERIAL_ID);
+            List<MaterialFlagBluePrint> materials = new DtoCombinedQuery().get(EntityConstants.REFINED_PLANET_MATERIAL_ID);
 
-            for (Material material : materials) {
+            for (MaterialFlagBluePrint material : materials) {
                 material.initImage32();
             }
             req.setAttribute("materials", materials);
