@@ -35,6 +35,7 @@
                 <td><c:out value="${material.name}"/></td>
                 <td align="right">
                     <c:if test="${material.flagIsBluePrint}">
+                        <button type="button" class="btn btn-outline-secondary" id="btn_show_planetII_${material.id}">Просмотр</button>
                         <button type="button" class="btn btn-outline-secondary" id="btn_edit_planetII_${material.id}">Изменить</button>
                     </c:if>
                     <c:if test="${!material.flagIsBluePrint}">
