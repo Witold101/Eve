@@ -44,9 +44,10 @@
 <!--***************************************************************************-->
 <c:if test="${pageContext.findAttribute('namePage') == 10}">
 <jsp:include page="table_prints.jsp" />
-
 </c:if>
-
+<c:if test="${pageContext.findAttribute('namePage') == 101}">
+    <jsp:include page="edit_blueprint.jsp" />
+</c:if>
 
 
 <!-- Optional JavaScript -->
